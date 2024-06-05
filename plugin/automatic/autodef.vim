@@ -596,7 +596,7 @@ function s:GetfReg(lines)
         endif
         let line = a:lines[idx-1]
         "find flip-flop reg
-        if line =~ '^\s*\<always\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
+        if line =~ '^\s*\<\(always\|always_ff\|always_comb\)\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
             let idx_inblock = idx + 1
             "find signals in block
             while 1
@@ -689,10 +689,10 @@ function s:GetcReg(lines)
         endif
         let line = a:lines[idx-1]
         "ignore flip-flop reg
-        if line =~ '^\s*\<always\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
+        if line =~ '^\s*\<\(always\|always_ff\|always_comb\)\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
 
         "find combination reg
-        elseif line =~ '^\s*\<always\>'
+        elseif line =~ '^\s*\<\(always\|always_ff\|always_comb\)\>'
             let idx_inblock = idx + 1
             "find signals in block
             while 1
