@@ -24,6 +24,7 @@ let s:VlogTypePort = s:VlogTypePort . '\<inout\>'
 "Data 数据类型
 let s:VlogTypeData =                  '\<wire\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<reg\>\|'
+let s:VlogTypeData = s:VlogTypeData . '\<logic\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<parameter\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<localparam\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<defparam\>\|'

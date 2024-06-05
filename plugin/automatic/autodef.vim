@@ -29,6 +29,7 @@ let s:VlogTypePort = s:VlogTypePort . '\<inout\>'
 "Data 数据类型
 let s:VlogTypeData =                  '\<wire\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<reg\>\|'
+let s:VlogTypeData = s:VlogTypeData . '\<logic\>|'
 let s:VlogTypeData = s:VlogTypeData . '\<parameter\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<localparam\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<defparam\>\|'
@@ -37,7 +38,9 @@ let s:VlogTypeData = s:VlogTypeData . '\<integer\>'
 
 "Calculation 计算类型
 let s:VlogTypeCalc =                  '\<assign\>\|'
-let s:VlogTypeCalc = s:VlogTypeCalc . '\<always\>'
+let s:VlogTypeCalc = s:VlogTypeCalc . '\<always\>|'
+let s:VlogTypeCalc = s:VlogTypeCalc . '\<always_ff\>|'
+let s:VlogTypeCalc =                  '\<always_comb\>'
 
 "Structure 结构类型
 let s:VlogTypeStru =                  '\<module\>\|'
@@ -137,7 +140,7 @@ let g:_ATV_AUTODEF_DEFAULTS = {
             \'wire_rmv_io':     1,
             \'mv':              0,        
             \'tail_nalign':     0,
-            \'logic':           0    
+            \'logic':           1    
             \}
 for s:key in keys(g:_ATV_AUTODEF_DEFAULTS)
     if !exists('g:atv_autodef_' . s:key)
@@ -147,7 +150,7 @@ endfor
 let s:st_prefix = repeat(' ',g:atv_autodef_st_pos)
 
 "Progressbar 进度条支持
-let s:atv_pb_en = 0
+let s:atv_pb_en = 1
 
 "}}}1
 
