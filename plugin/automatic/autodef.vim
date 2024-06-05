@@ -29,6 +29,7 @@ let s:VlogTypePort = s:VlogTypePort . '\<inout\>'
 "Data 数据类型
 let s:VlogTypeData =                  '\<wire\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<reg\>\|'
+let s:VlogTypeData = s:VlogTypeData . '\<logic\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<parameter\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<localparam\>\|'
 let s:VlogTypeData = s:VlogTypeData . '\<defparam\>\|'
@@ -596,7 +597,7 @@ function s:GetfReg(lines)
         endif
         let line = a:lines[idx-1]
         "find flip-flop reg
-        if line =~ '^\s*\<\(always\|always_ff\|always_comb\)\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
+        if line =~ '^\s*\<always\>\s*@\s*(\s*\<\(posedge\|negedge\)\>' || line =~ '^\s*\<always_ff\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
             let idx_inblock = idx + 1
             "find signals in block
             while 1
@@ -689,10 +690,10 @@ function s:GetcReg(lines)
         endif
         let line = a:lines[idx-1]
         "ignore flip-flop reg
-        if line =~ '^\s*\<\(always\|always_ff\|always_comb\)\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
+        if line =~ '^\s*\<always\>\s*@\s*(\s*\<\(posedge\|negedge\)\>' || line =~ '^\s*\<always_ff\>\s*@\s*(\s*\<\(posedge\|negedge\)\>'
 
         "find combination reg
-        elseif line =~ '^\s*\<\(always\|always_ff\|always_comb\)\>'
+        elseif line =~ '^\s*\<always\>' || line =~ '^\s*\<always_comb\>' 
             let idx_inblock = idx + 1
             "find signals in block
             while 1
